@@ -1,0 +1,35 @@
+
+services:
+  dolar_scraper:
+    container_name: dolar_scraper
+    image: dolar_scraper
+    build: .
+    working_dir: /app
+
+    env_file:
+      - .env
+    
+    environment:
+      # - DATABASE_URI=sqlite:///dolar.db
+      - DATABASE_URI=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@dolar_db:5432/dolar
+    depends_on:
+      - dolar_db
+    restart: unless-stopped
+  
+  dolar_db:
+    container_name: dolar_db
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=dolar
+    
+    env_file:
+      - .env
+
+    volumes:
+      - dolar_data:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5400:5432
+    restart: unless-stopped
+
+volumes:
+  dolar_data:

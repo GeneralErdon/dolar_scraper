@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python BCV",
+            "type": "debugpy",
+            "request": "launch",
+
+            "program": "${workspaceFolder}/env/bin/scrapy",
+            "args": [
+                "crawl",
+                "BCV"
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/my_scraper"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Monitor",
+            "type": "debugpy",
+            "request": "launch",
+
+            "program": "${workspaceFolder}/env/bin/scrapy",
+            "args": [
+                "crawl",
+                "MONITOR"
+            ],
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/my_scraper"
+            },
+            "console": "integratedTerminal"
+        },
+    ]
+}
